@@ -6,7 +6,6 @@ import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 
 import Typography from '@material-ui/core/Typography';
-import {red} from '@material-ui/core/colors';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import PeopleIcon from '@material-ui/icons/People';
 import AddIcon from '@material-ui/icons/Add';
@@ -15,14 +14,14 @@ import TocIcon from '@material-ui/icons/Toc';
 import IconButton from '@material-ui/core/IconButton';
 import {nameIcons} from "../../constants/icons";
 import AppIconButton from "../AppIconButton";
-import {COLOR_PRIMARY, COLOR_SECONDARY} from "../../constants/colors";
+import {COLOR_SECONDARY} from "../../constants/colors";
 import {useHistory} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     root: {
         maxWidth: 345,
         backgroundColor: COLOR_SECONDARY,
-        borderRadius:8,
+        borderRadius: 8,
         margin: '10%'
     }
 }));
@@ -35,7 +34,7 @@ const StudiesCard = ({name, path, description}) => {
     const classes = useStyles();
     return (
         <Grid item xs={4}
-              >
+        >
             <Card className={classes.root}>
                 <CardHeader
                     action={
