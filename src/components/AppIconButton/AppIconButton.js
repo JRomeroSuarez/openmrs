@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Button, IconButton, Typography} from '@material-ui/core'
-import {getIconByName, iconsByName} from "../../constants/icons";
+import {iconsByName} from "../../constants/icons";
 
-const NavBarIconButton = ({name, color, size, background, onClick, isDisabled, text}) => {
+const AppIconButton = ({name, color, size, background, onClick, isDisabled, text}) => {
     if (isDisabled == null) isDisabled = false
     if (text == null) {
         return (
@@ -33,7 +33,7 @@ const NavBarIconButton = ({name, color, size, background, onClick, isDisabled, t
     }
 }
 
-NavBarIconButton.propTypes = {
+AppIconButton.propTypes = {
     name: PropTypes.string.isRequired,
     color: PropTypes.string,
     text: PropTypes.string,
@@ -43,4 +43,4 @@ NavBarIconButton.propTypes = {
     isDisabled: PropTypes.bool,
 }
 
-export default NavBarIconButton
+export default AppIconButton
