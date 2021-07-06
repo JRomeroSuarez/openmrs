@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {AppBar, makeStyles, Toolbar} from "@material-ui/core";
-import {COLOR_BLUE} from "../../constants/colors";
+import {COLOR_BLUE, COLOR_PRIMARY} from "../../constants/colors";
 import {nameIcons} from "../../constants/icons";
 import Grid from "@material-ui/core/Grid";
-import NavBarIconButton from "../NavBarIconButton";
+import AppIconButton from "../AppIconButton";
 import NavBarTabs from "../NavBarTabs";
 
 const useStyles = makeStyles((theme) => ({
@@ -26,21 +26,13 @@ const NavBar = ({tabs, showIcon, background}) => {
         showIcon = true;
     }
     if (background == null) {
-        background = COLOR_BLUE;
+        background = COLOR_PRIMARY;
     }
     if (tabs == null) {
         tabs = [
             {
                 labelTab: "Home",
                 linkTab: "/",
-            },
-            {
-                labelTab: "XXXX",
-                linkTab: "/data",
-            },
-            {
-                labelTab: "YYYY",
-                linkTab: "/studies"
             }
         ];
     }
@@ -52,7 +44,7 @@ const NavBar = ({tabs, showIcon, background}) => {
                     <Toolbar variant="dense">
                         <NavBarTabs tabsInfo={tabs}/>
                         <div className={classes.toolbarButtons}>
-                            {showIcon && <NavBarIconButton name={nameIcons.USER} color={"inherit"} onClick={() => {
+                            {showIcon && <AppIconButton name={nameIcons.USER} color={"inherit"} onClick={() => {
                                 window.location.href = '/not/implemented'
                             }}/>}
                         </div>
