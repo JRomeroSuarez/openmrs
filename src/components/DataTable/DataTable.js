@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     },
 
 }));
-const DataTable = () => {
+const DataTable = ({rows, columns}) => {
     const classes = useStyles();
     return (
         <div className={classes.table}>
