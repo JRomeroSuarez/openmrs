@@ -27,7 +27,8 @@ const AppIconButton = ({name, color, size, background, onClick, isDisabled, text
                 style={{backgroundColor: background}}
                 disabled={isDisabled}
                 onClick={onClick}>
-                <Typography display={"inline"} variant={"body1"} style={{marginRight: "5px" , color:{color}}}>{text}</Typography>
+                <Typography display={"inline"} variant={"body1"}
+                            style={{marginRight: "5px", color: {color}}}>{text}</Typography>
                 {iconsByName[name]}
             </Button>)
     }

@@ -32,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const Form=() =>{
+const Form = () => {
     const classes = useStyles();
     return (
         <Container component="main" maxWidth="xs">

@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import Grid from '@material-ui/core/Grid'
 import NavBar from "../NavBar";
 import 'typeface-roboto'
-import {COLOR_BACKGROUND, COLOR_BLUE} from "../../constants/colors";
+import {COLOR_BACKGROUND} from "../../constants/colors";
 
 const AppFrame = ({children, tabs}) => {
     return (

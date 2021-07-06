@@ -33,7 +33,7 @@ const ParticipantsPage = () => {
         {field: 'col7', headerName: 'Actions', width: 150},
     ];
 
-    const rows= [
+    const rows = [
         {id: 1, col1: 'Example@iGive2.com', col2: 'St11111', col3: '', col4: '', col5: '', col6: 'Accepted', col7: ''},
         {id: 2, col1: 'Example2@iGive2.com', col2: 'St22222', col3: '', col4: '', col5: '', col6: 'Accepted', col7: ''},
         {id: 3, col1: 'Example3@iGive2.com', col2: 'St33333', col3: '', col4: '', col5: '', col6: 'Accepted', col7: ''},

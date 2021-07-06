@@ -29,7 +29,7 @@ export const nameIcons = {
     ADD_USER: 'add_user',
     USER: 'user',
     SAD: 'sad',
-    FAVORITE:'favorite',
+    FAVORITE: 'favorite',
     SETTINGS: 'settings',
     PEOPLE: 'people',
     ADD: 'add',
@@ -54,6 +54,6 @@ export const iconsByName = {
     add: <AddIcon/>,
     remove: <RemoveIcon/>,
     toc: <TocIcon/>,
-    icon:<IconButton/>
+    icon: <IconButton/>
 
 }

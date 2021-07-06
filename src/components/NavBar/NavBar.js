@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {AppBar, makeStyles, Toolbar} from "@material-ui/core";
-import {COLOR_BLUE, COLOR_PRIMARY} from "../../constants/colors";
+import {COLOR_PRIMARY} from "../../constants/colors";
 import {nameIcons} from "../../constants/icons";
 import Grid from "@material-ui/core/Grid";
 import AppIconButton from "../AppIconButton";
