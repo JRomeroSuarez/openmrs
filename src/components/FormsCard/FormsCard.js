@@ -9,6 +9,7 @@ import AppIconButton from "../AppIconButton";
 import {COLOR_SECONDARY} from "../../constants/colors";
 import {useHistory} from "react-router-dom";
 
+import Typography from '@material-ui/core/Typography';
 import CardActions from '@material-ui/core/CardActions';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -21,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
         margin: '10%'
     }
 }));
-const FormsCard = ({name, path, responses}) => {
+const FormsCard = ({name, path, description, responses}) => {
     const history = useHistory()
 
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -44,6 +45,9 @@ const FormsCard = ({name, path, responses}) => {
                             title={name}
                 />
                 <CardContent>
+                    <Typography  variant="body2" color="textSecondary" component="p">
+                        {description}
+                    </Typography>
                     <Grid container direction="row" alignItems="center">
                         <TocIcon/> {responses} responses
                     </Grid>
