@@ -9,16 +9,28 @@ import AppIconButton from "../AppIconButton";
 import {COLOR_SECONDARY} from "../../constants/colors";
 import {useHistory} from "react-router-dom";
 
+import CardActions from '@material-ui/core/CardActions';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+
 const useStyles = makeStyles((theme) => ({
     root: {
         maxWidth: 345,
         backgroundColor: COLOR_SECONDARY,
-        borderRadius:8,
+        borderRadius: 8,
         margin: '10%'
     }
 }));
 const FormsCard = ({name, path, responses}) => {
     const history = useHistory()
+
+    const [anchorEl, setAnchorEl] = React.useState(null);
+    const handleClick = (event) => {
+        setAnchorEl(event.currentTarget);
+    };
+    const handleClose = () => {
+        setAnchorEl(null);
+    };
 
     const onClickHandler = () => {
         history.push(path)
@@ -26,19 +38,33 @@ const FormsCard = ({name, path, responses}) => {
     const classes = useStyles();
     return (
         <Grid item xs={4}
-              >
-            <Card className={classes.root}  >
-                <CardHeader
-                    action={
-                        <AppIconButton name={nameIcons.SETTINGS}/>
-                    }
-                    title={name}
+        >
+            <Card className={classes.root}>
+                <CardHeader onClick={onClickHandler}
+                            title={name}
                 />
-                <CardContent onClick={onClickHandler}   >
+                <CardContent>
                     <Grid container direction="row" alignItems="center">
                         <TocIcon/> {responses} responses
                     </Grid>
                 </CardContent>
+                <CardActions disableSpacing>
+                    <AppIconButton aria-controls="simple-menu" aria-haspopup="true" onClick={handleClick}
+                                   name={nameIcons.SETTINGS}/>
+                    <Menu
+                        id="simple-menu"
+                        anchorEl={anchorEl}
+                        keepMounted
+                        open={Boolean(anchorEl)}
+                        onClose={handleClose}
+                    >
+                        <MenuItem onClick={handleClose}>Activate</MenuItem>
+                        <MenuItem onClick={handleClose}>Duplicate</MenuItem>
+                        <MenuItem onClick={handleClose}>Export</MenuItem>
+                        <MenuItem onClick={handleClose}>Program</MenuItem>
+                        <MenuItem onClick={handleClose}>Download form</MenuItem>
+                    </Menu>
+                </CardActions>
             </Card>
         </Grid>
     );
