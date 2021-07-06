@@ -30,10 +30,10 @@ const FormsPage = () => {
                 </Grid>
             </Grid>
             <Grid container xs={12} spacing={1}>
-                <FormsCard path={`forms/form 1`}
+                <FormsCard path={`forms/Form1`}
                            name={"Form 1"}
                            responses={1}/>
-                <FormsCard path={`forms/form 2`}
+                <FormsCard path={`forms/Form2`}
                            name={"Form 2"}
                            responses={2}
                 />
