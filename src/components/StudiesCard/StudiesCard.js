@@ -5,41 +5,47 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
 
-import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import {red} from '@material-ui/core/colors';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import SettingsIcon from '@material-ui/icons/Settings';
 import PeopleIcon from '@material-ui/icons/People';
 import AddIcon from '@material-ui/icons/Add';
 import RemoveIcon from '@material-ui/icons/Remove';
 import TocIcon from '@material-ui/icons/Toc';
+import IconButton from '@material-ui/core/IconButton';
+import {nameIcons} from "../../constants/icons";
+import AppIconButton from "../AppIconButton";
+import {COLOR_PRIMARY, COLOR_SECONDARY} from "../../constants/colors";
+import {useHistory} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     root: {
         maxWidth: 345,
-    },
-    avatar: {
-        backgroundColor: red[500],
-    },
+        backgroundColor: COLOR_SECONDARY,
+        borderRadius:8,
+        margin: '10%'
+    }
 }));
-const StudiesCard = () => {
+const StudiesCard = ({name, path, description}) => {
+    const history = useHistory()
+
+    const onClickHandler = () => {
+        history.push(path)
+    }
     const classes = useStyles();
     return (
-        <Grid item xs={4}>
+        <Grid item xs={4}
+              >
             <Card className={classes.root}>
                 <CardHeader
                     action={
-                        <IconButton aria-label="settings">
-                            <SettingsIcon/>
-                        </IconButton>
+                        <AppIconButton name={nameIcons.SETTINGS}/>
                     }
-                    title="Card 1"
+                    title={name}
                 />
-                <CardContent>
+                <CardContent onClick={onClickHandler}>
                     <Typography variant="body2" color="textSecondary" component="p">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua.
+                        {description}
                     </Typography>
                     <Grid container direction="row" alignItems="center">
                         <PeopleIcon/> 1000
