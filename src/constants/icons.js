@@ -9,6 +9,15 @@ import PersonOutlinedIcon from '@material-ui/icons/PersonOutlined';
 import SentimentVeryDissatisfiedIcon from '@material-ui/icons/SentimentVeryDissatisfied';
 import VisibilityOutlinedIcon from '@material-ui/icons/VisibilityOutlined';
 
+
+import FavoriteIcon from '@material-ui/icons/Favorite';
+import SettingsIcon from '@material-ui/icons/Settings';
+import PeopleIcon from '@material-ui/icons/People';
+import AddIcon from '@material-ui/icons/Add';
+import RemoveIcon from '@material-ui/icons/Remove';
+import TocIcon from '@material-ui/icons/Toc';
+import IconButton from '@material-ui/core/IconButton';
+
 export const nameIcons = {
     DELETE: 'delete',
     MAIL: 'mail',
@@ -19,7 +28,13 @@ export const nameIcons = {
     NEW: 'new',
     ADD_USER: 'add_user',
     USER: 'user',
-    SAD: 'sad'
+    SAD: 'sad',
+    FAVORITE:'favorite',
+    SETTINGS: 'settings',
+    PEOPLE: 'people',
+    ADD: 'add',
+    TOC: 'toc',
+    ICON: 'icon'
 }
 
 export const iconsByName = {
@@ -32,5 +47,13 @@ export const iconsByName = {
     new: <AddCircleOutlineIcon/>,
     add_user: <PersonAddOutlinedIcon/>,
     user: <PersonOutlinedIcon/>,
-    sad: <SentimentVeryDissatisfiedIcon/>
+    sad: <SentimentVeryDissatisfiedIcon/>,
+    favorite: <FavoriteIcon/>,
+    settings: <SettingsIcon/>,
+    people: <PeopleIcon/>,
+    add: <AddIcon/>,
+    remove: <RemoveIcon/>,
+    toc: <TocIcon/>,
+    icon:<IconButton/>
+
 }
