@@ -22,15 +22,13 @@ const HomePage = () => {
 
 
             <Grid container xs={12} spacing={1}>
-                <StudiesCard path={`study/Study 1/forms`}
+                <StudiesCard path={`study/Study1/forms`}
                              name={"Study 1"}
                              description={"LOREM 1"}/>
-                <StudiesCard path={`study/Study 2/forms`}
+                <StudiesCard path={`study/Study2/forms`}
                              name={"Study 2"}
                              description={"LOREM 2"}/>
             </Grid>
-
-
 
 
         </AppFrame>
