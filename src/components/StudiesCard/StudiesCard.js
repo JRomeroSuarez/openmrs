@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
         margin: '10%'
     }
 }));
-const StudiesCard = ({name, path, description}) => {
+const StudiesCard = ({name, path, description,participants,forms}) => {
     const history = useHistory()
 
     const onClickHandler = () => {
@@ -43,14 +43,14 @@ const StudiesCard = ({name, path, description}) => {
                     title={name}
                 />
                 <CardContent onClick={onClickHandler}>
-                    <Typography variant="body2" color="textSecondary" component="p">
+                    <Typography  variant="body2" color="textSecondary" component="p">
                         {description}
                     </Typography>
                     <Grid container direction="row" alignItems="center">
-                        <PeopleIcon/> 1000
+                        <PeopleIcon/> {participants}
                     </Grid>
                     <Grid container direction="row" alignItems="center">
-                        <TocIcon/> 2
+                        <TocIcon/> {forms}
                     </Grid>
 
                 </CardContent>
