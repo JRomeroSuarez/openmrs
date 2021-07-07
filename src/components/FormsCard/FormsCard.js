@@ -41,10 +41,10 @@ const FormsCard = ({name, path, description, responses}) => {
         <Grid item xs={4}
         >
             <Card className={classes.root}>
-                <CardHeader onClick={onClickHandler}
+                <CardHeader
                             title={name}
                 />
-                <CardContent>
+                <CardContent onClick={onClickHandler}>
                     <Typography  variant="body2" color="textSecondary" component="p">
                         {description}
                     </Typography>
