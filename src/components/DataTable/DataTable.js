@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
 const DataTable = ({rows, columns}) => {
     const classes = useStyles();
 
-    const [pageSize, setPageSize] = React.useState(5);
+    const [pageSize, setPageSize] = React.useState(10);
     const handlePageSizeChange = (params) => {
         setPageSize(params.pageSize);
     };
@@ -25,7 +25,7 @@ const DataTable = ({rows, columns}) => {
         <div className={classes.table}>
             <DataGrid pageSize={pageSize}
                       onPageSizeChange={handlePageSizeChange}
-                      rowsPerPageOptions={[5, 10, 20]} pagination rows={rows} columns={columns}/>
+                      rowsPerPageOptions={[10, 20, 30]} pagination rows={rows} columns={columns}/>
         </div>
     )
 }
