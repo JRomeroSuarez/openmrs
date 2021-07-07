@@ -4,8 +4,10 @@ import HomePage from './pages/HomePage'
 import DataPage from "./pages/DataPage";
 import FormsPage from "./pages/FormsPage";
 import ParticipantsPage from "./pages/ParticipantsPage";
+import {COLOR_BACKGROUND} from "./constants/colors";
 
 function App() {
+    document.body.style.backgroundColor = COLOR_BACKGROUND;
     return (
         <Router>
             <Switch>

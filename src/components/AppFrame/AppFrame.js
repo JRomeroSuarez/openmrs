@@ -8,7 +8,6 @@ import {COLOR_BACKGROUND} from "../../constants/colors";
 const AppFrame = ({children, tabs}) => {
     return (
         <Grid container
-              style={{backgroundColor: COLOR_BACKGROUND}}
               direction={"column"}
               justify="center">
             <Grid item>
