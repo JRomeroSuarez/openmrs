@@ -13,7 +13,8 @@ const FormsPage = () => {
 
     const tabs = [
         {
-            labelTab: path_array.length - 2,
+            labelTab: path_array[path_array.length - 2],
+            linkTab: "/study/"+path_array[path_array.length - 2]+"/forms",
         },
         {
             labelTab: "Home",
@@ -21,11 +22,11 @@ const FormsPage = () => {
         },
         {
             labelTab: "Forms",
-            linkTab: "/study/Study 1/forms",
+            linkTab: "/study/"+path_array[path_array.length - 2]+"/forms",
         },
         {
             labelTab: "Participants",
-            linkTab: "/study/Study 1/participants"
+            linkTab: "/study/"+path_array[path_array.length - 2]+"/participants",
         }
     ];
     return (
@@ -33,22 +34,16 @@ const FormsPage = () => {
             <Grid item style={{marginTop: "5em"}}>
                 <Grid container item direction={"column"} style={{marginBottom: "2em", padding: "10px"}}>
                     <Typography variant={"h3"} align={"center"}>Forms
-                        del {path_array[path_array.length - 2]}</Typography>
+                        de {path_array[path_array.length - 2]}</Typography>
                     <Typography variant={"subtitle1"} align={"center"}>Lorem Ipsum</Typography>
                 </Grid>
             </Grid>
             <Grid container xs={12} spacing={1}>
-                <FormsCard path={`forms/Form1`}
-                           name={"Form 1"}
-                           responses={1}/>
-                <FormsCard path={`forms/Form2`}
-                           name={"Form 2"}
-                           responses={2}
-                />
+
 
                 {listForms.map(item => (
                     <FormsCard name={item.name}
-                               path={`study/${path_array[path_array.length - 2]}/forms/${item.name}`}
+                               path={`forms/${item.name}`}
                                description={item.description}
                                responses={item.responses}
                     />
