@@ -5,6 +5,7 @@ import FormsCard from "../components/FormsCard";
 
 import {useLocation} from 'react-router-dom'
 import {listForms} from "../data/forms";
+import AddForm from "../components/AddForm";
 
 const FormsPage = () => {
 
@@ -14,7 +15,7 @@ const FormsPage = () => {
     const tabs = [
         {
             labelTab: path_array[path_array.length - 2],
-            linkTab: "/study/"+path_array[path_array.length - 2]+"/forms",
+            linkTab: "/study/" + path_array[path_array.length - 2] + "/forms",
         },
         {
             labelTab: "Home",
@@ -22,11 +23,11 @@ const FormsPage = () => {
         },
         {
             labelTab: "Forms",
-            linkTab: "/study/"+path_array[path_array.length - 2]+"/forms",
+            linkTab: "/study/" + path_array[path_array.length - 2] + "/forms",
         },
         {
             labelTab: "Participants",
-            linkTab: "/study/"+path_array[path_array.length - 2]+"/participants",
+            linkTab: "/study/" + path_array[path_array.length - 2] + "/participants",
         }
     ];
     return (
@@ -39,7 +40,7 @@ const FormsPage = () => {
                 </Grid>
             </Grid>
             <Grid container xs={12} spacing={1}>
-
+                <AddForm/>
 
                 {listForms.map(item => (
                     <FormsCard name={item.name}
