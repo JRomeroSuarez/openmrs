@@ -4,8 +4,8 @@ import AppFrame from "../components/AppFrame";
 import FormsCard from "../components/FormsCard";
 
 import {useLocation} from 'react-router-dom'
-import {listForms} from "../data/forms";
 import AddForm from "../components/AddForm";
+import Forms from "../endpointsPostman/forms.json"
 
 const FormsPage = () => {
 
@@ -30,6 +30,7 @@ const FormsPage = () => {
             linkTab: "/study/" + path_array[path_array.length - 2] + "/participants",
         }
     ];
+
     return (
         <AppFrame tabs={tabs}>
             <Grid item style={{marginTop: "5em"}}>
@@ -42,11 +43,11 @@ const FormsPage = () => {
             <Grid container xs={12} spacing={1}>
                 <AddForm/>
 
-                {listForms.map(item => (
-                    <FormsCard name={item.name}
-                               path={`forms/${item.name}`}
+                {Forms.map(item => (
+                    <FormsCard name={item.title}
+                               path={`forms/${item.title}`}
                                description={item.description}
-                               responses={item.responses}
+                               responses={item.numResponses}
                     />
                 ))}
             </Grid>
