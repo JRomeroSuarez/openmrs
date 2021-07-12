@@ -1,0 +1,17 @@
+[ {
+  "id" : "60e8136dc1551b0f813ec8f9",
+  "title" : "Study1",
+  "description" : "Lorem",
+  "numParticipants" : 1,
+  "numForms" : 2,
+  "forms" : [ ],
+  "participants" : [ ]
+}, {
+  "id" : "60e818f7c1551b0f813ec8fd",
+  "title" : "Study2",
+  "description" : "A",
+  "numParticipants" : 2,
+  "numForms" : 2,
+  "forms" : [ ],
+  "participants" : [ ]
+} ]

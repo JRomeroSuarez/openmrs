@@ -1,0 +1,31 @@
+[ {
+  "id" : "60e8138cc1551b0f813ec8fa",
+  "email" : "a",
+  "associatedForms" : "a",
+  "formsCompleted" : 1,
+  "languaje" : "Spanish",
+  "invitationStatus" : "ACCEPTED",
+  "actions" : "A",
+  "study" : {
+    "id" : "60e8136dc1551b0f813ec8f9",
+    "title" : "Study1",
+    "description" : "Lorem",
+    "numParticipants" : 1,
+    "numForms" : 2
+  }
+}, {
+  "id" : "60e828964f93242277865111",
+  "email" : "bb",
+  "associatedForms" : "b",
+  "formsCompleted" : 1,
+  "languaje" : "A",
+  "invitationStatus" : "ACCEPTED",
+  "actions" : "a",
+  "study" : {
+    "id" : "60e8136dc1551b0f813ec8f9",
+    "title" : "Study1",
+    "description" : "Lorem",
+    "numParticipants" : 1,
+    "numForms" : 2
+  }
+} ]

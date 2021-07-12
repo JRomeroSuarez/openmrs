@@ -1,0 +1,39 @@
+[ {
+  "id" : "60e84802cd77364348026761",
+  "subtitle" : "Pregunta 1",
+  "info" : "Pregunta",
+  "fieldType" : "INFO",
+  "mandatory" : true,
+  "variableName" : "A",
+  "units" : "1",
+  "conditional" : true,
+  "creationDate" : "2021-07-08T22:00:00Z",
+  "editDate" : "2021-07-08T22:00:00Z",
+  "actions" : "Agree",
+  "answers" : [ ],
+  "forms" : {
+    "id" : "60e818e0c1551b0f813ec8fb",
+    "title" : "a",
+    "description" : "a",
+    "numResponses" : 1
+  }
+}, {
+  "id" : "60e84831cd77364348026762",
+  "subtitle" : "Pregunta 1",
+  "info" : "2",
+  "fieldType" : "INFO",
+  "mandatory" : true,
+  "variableName" : "Aa",
+  "units" : "2",
+  "conditional" : false,
+  "creationDate" : "2021-07-08T22:00:00Z",
+  "editDate" : "2021-07-08T22:00:00Z",
+  "actions" : "ac",
+  "answers" : [ ],
+  "forms" : {
+    "id" : "60e818e0c1551b0f813ec8fb",
+    "title" : "a",
+    "description" : "a",
+    "numResponses" : 1
+  }
+} ]
