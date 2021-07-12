@@ -15,12 +15,9 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-
-
-
 const DataTable = ({rows, columns}) => {
 
-    const downloadFile =() =>{
+    const downloadFile = () => {
         const name = path_array[path_array.length - 1]
         const link = document.createElement('a');
         const nameCleaned = name.replace(/\s/g, '_')
