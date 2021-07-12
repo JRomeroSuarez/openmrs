@@ -1,6 +1,6 @@
 export const headTable = [
-    {field: 'col1', headerName: 'Email', width: 200},
-    {field: 'col2', headerName: 'ID', width: 150},
+    {field: 'col1', headerName: 'ID', width: 200},
+    {field: 'col2', headerName: 'Email', width: 150},
     {field: 'col3', headerName: 'Associated forms', width: 150},
     {field: 'col4', headerName: 'Forms completed', width: 150},
     {field: 'col5', headerName: 'Languaje', width: 150},
@@ -9,7 +9,7 @@ export const headTable = [
 
 ]
 
-export const participants = [
+export const participantsTable = [
     {id: 1, col1: 'Example@iGive2.com', col2: 'St11111', col3: '', col4: '', col5: '', col6: 'Accepted', col7: ''},
     {id: 2, col1: 'Example2@iGive2.com', col2: 'St22222', col3: '', col4: '', col5: '', col6: 'Accepted', col7: ''},
     {id: 3, col1: 'Example3@iGive2.com', col2: 'St33333', col3: '', col4: '', col5: '', col6: 'Accepted', col7: ''},
