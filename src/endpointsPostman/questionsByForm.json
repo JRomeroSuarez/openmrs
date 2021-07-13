@@ -1,6 +1,7 @@
 [ {
   "id" : "60e84802cd77364348026761",
-  "subtitle" : "Pregunta 1",
+  "question": "Pregunta1",
+  "subtitle" : "Subpregunta 1",
   "info" : "Pregunta",
   "fieldType" : "INFO",
   "mandatory" : true,
@@ -19,7 +20,8 @@
   }
 }, {
   "id" : "60e84831cd77364348026762",
-  "subtitle" : "Pregunta 1",
+  "question": "Pregunta2",
+  "subtitle" : "Subpregunta 2",
   "info" : "2",
   "fieldType" : "INFO",
   "mandatory" : true,
