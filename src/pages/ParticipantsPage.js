@@ -6,17 +6,37 @@ import {useLocation} from "react-router-dom";
 
 import {headTable} from "../data/participants";
 import Participants from "../endpointsPostman/participantsByStudy.json"
+import axios from "axios";
+import {accesToken} from "../constants/token";
 
 const ParticipantsPage = () => {
 
-    const [data, setData] = useState([])
+    axios.interceptors.request.use(
+        config => {
+            config.headers.authorization = `Bearer ${accesToken}`;
+            return config
+        },
+        error => {
+            return Promise.reject(error)
+        }
+    )
+
+    const [dataData, setData] = useState([])
+
+
+    const apiUrl = '/api'
+    const [participantsData, setParticipantsData] = useState([]);
+    const [studyData, setStudyData] = useState([]);
+
 
     const location = useLocation();
     let path_array = location.pathname.split("/");
+    let data = location.state
+    let studyId = path_array[path_array.length - 2]
     const tabs = [
         {
-            labelTab: path_array[path_array.length - 2],
-            linkTab: "/study/" + path_array[path_array.length - 2] + "/forms",
+            labelTab: studyData.title,
+            linkTab: "/study/" + studyId + "/forms",
         },
         {
             labelTab: "Home",
@@ -24,26 +44,56 @@ const ParticipantsPage = () => {
         },
         {
             labelTab: "Forms",
-            linkTab: "/study/" + path_array[path_array.length - 2] + "/forms",
+            linkTab: "/study/" + studyId + "/forms",
         },
         {
             labelTab: "Participants",
-            linkTab: "/study/" + path_array[path_array.length - 2] + "/participants",
+            linkTab: "/study/" + studyId + "/participants",
         }
     ];
 
+
+    const authAxios = axios.create({
+        baseURL: apiUrl,
+        headers: {
+            Authorization: `Bearer ${accesToken}`
+        }
+    })
+
+    const getParticipants = async () => {
+        try {
+            const result = await authAxios.get(`studies/${studyId}/participants`);
+            setParticipantsData(result.data)
+        } catch (err) {
+            setParticipantsData(err.message)
+        }
+    }
+
+    const getStudy = async () => {
+        try {
+            const result = await authAxios.get(`/studies/${studyId}`);
+            setStudyData(result.data)
+        } catch (err) {
+            setStudyData(err.message)
+        }
+    }
+
     useEffect(() => {
+        getStudy();
+        getParticipants();
         createTable();
+
 
     }, []);
 
 
     const createTable = () => {
+        console.log(participantsData)
         var dict = []; // create an empty array
         var i = 1;
-        Participants.map((item) => {
+        participantsData.map((item) => {
             dict.push({
-                id: i,
+                id: item["id"],
                 col1: item["id"],
                 col2: item["email"],
                 col3: item["associatedForms"],
@@ -53,20 +103,19 @@ const ParticipantsPage = () => {
                 col7: item["actions"]
             });
             i++;
-
         })
+        console.log("PIPO")
+        console.log(dict)
         setData(dict);
     }
 
     return (
 
         <AppFrame tabs={tabs}>
-
-
             <Grid item style={{marginTop: "5em"}}>
                 <Grid container item direction={"column"} style={{marginBottom: "2em", padding: "10px"}}>
                     <Typography variant={"h3"} align={"center"}>Participants
-                        de {path_array[path_array.length - 2]}</Typography>
+                        de {studyData.title}</Typography>
                     <Typography variant={"subtitle1"} align={"center"}>Lorem Ipsum</Typography>
                 </Grid>
             </Grid>
@@ -75,11 +124,9 @@ const ParticipantsPage = () => {
                   justify="center"
                   style={{margin: "2em", padding: "10px"}}>
                 <Grid item>
-                    <DataTable rows={data} columns={headTable}/>
+                    <DataTable rows={dataData} columns={headTable}/>
                 </Grid>
             </Grid>
-
-
         </AppFrame>
     )
 }

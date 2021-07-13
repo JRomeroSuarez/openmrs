@@ -25,11 +25,14 @@ const useStyles = makeStyles((theme) => ({
         margin: '10%'
     }
 }));
-const StudiesCard = ({name, path, description,participants,forms}) => {
+const StudiesCard = ({id,name, path, description,participants,forms}) => {
     const history = useHistory()
 
     const onClickHandler = () => {
-        history.push(path)
+        history.push({
+            pathname: path,
+            state: id
+        })
     }
     const classes = useStyles();
     return (
