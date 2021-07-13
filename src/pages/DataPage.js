@@ -1,12 +1,15 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import {Grid, Typography} from "@material-ui/core";
 import AppFrame from "../components/AppFrame";
 import DataTable from "../components/DataTable";
 import {useLocation} from "react-router-dom";
 
 import {headTable, reports} from "../data/reports";
+import Questions from "../endpointsPostman/questionsByForm.json";
 
 const DataPage = () => {
+
+    const [data, setData] = useState([])
 
     const location = useLocation();
     let path_array = location.pathname.split("/");
@@ -29,6 +32,34 @@ const DataPage = () => {
         }
     ];
 
+    useEffect(() => {
+        createTable();
+
+    }, []);
+
+    const createTable = () => {
+        var dict = []; // create an empty array
+        var i = 1;
+        Questions.map((item) => {
+            dict.push({
+                id: i,
+                col1: item["question"],
+                col2: item["subtitle"],
+                col3: item["info"],
+                col4: item["fieldType"],
+                col5: item["mandatory"],
+                col6: item["variableName"],
+                col7: item["conditional"],
+                col8: item["creationDate"],
+                col9: item["editDate"],
+                col10: item["actions"]
+            });
+            i++;
+
+        })
+        setData(dict);
+    }
+
     return (
 
         <AppFrame tabs={tabs}>
@@ -45,7 +76,7 @@ const DataPage = () => {
                   justify="center"
                   style={{margin: "2em", padding: "10px"}}>
                 <Grid item>
-                    <DataTable rows={reports} columns={headTable}/>
+                    <DataTable rows={data} columns={headTable}/>
                 </Grid>
             </Grid>
         </AppFrame>
