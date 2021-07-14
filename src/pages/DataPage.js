@@ -6,17 +6,36 @@ import {useLocation} from "react-router-dom";
 
 import {headTable, reports} from "../data/reports";
 import Questions from "../endpointsPostman/questionsByForm.json";
+import axios from "axios";
+import {accesToken} from "../constants/token";
 
 const DataPage = () => {
 
+    axios.interceptors.request.use(
+        config => {
+            config.headers.authorization = `Bearer ${accesToken}`;
+            return config
+        },
+        error => {
+            return Promise.reject(error)
+        }
+    )
+
     const [data, setData] = useState([])
+
+    const apiUrl = '/api'
+    const [questionsData, setQuestionsData] = useState([]);
+    const [studyData, setStudyData] = useState([]);
 
     const location = useLocation();
     let path_array = location.pathname.split("/");
+    let locationState = location.state
+    let studyId = path_array[path_array.length - 3]
+    let formId = path_array[path_array.length - 1]
     const tabs = [
         {
-            labelTab: path_array[path_array.length - 3],
-            linkTab: "/study/" + path_array[path_array.length - 3] + "/forms",
+            labelTab: studyData.title,
+            linkTab: "/study/" + studyId + "/forms",
         },
         {
             labelTab: "Home",
@@ -24,15 +43,47 @@ const DataPage = () => {
         },
         {
             labelTab: "Forms",
-            linkTab: "/study/" + path_array[path_array.length - 3] + "/forms",
+            linkTab: "/study/" + studyId + "/forms",
         },
         {
             labelTab: "Participants",
-            linkTab: "/study/" + path_array[path_array.length - 3] + "/participants",
+            linkTab: "/study/" + studyId + "/participants",
         }
     ];
 
+    const authAxios = axios.create({
+        baseURL: apiUrl,
+        headers: {
+            Authorization: `Bearer ${accesToken}`
+        }
+    })
+
+    const getQuestions = async () => {
+        try {
+            const result = await authAxios.get(`forms/${formId}/questions`);
+            setQuestionsData(result.data)
+            console.log(result.data)
+            //console.log("PARTI")
+            //console.log(participantsData)
+        } catch (err) {
+            setQuestionsData(err.message)
+        }
+    }
+
+    const getStudy = async () => {
+        try {
+            const result = await authAxios.get(`/studies/${studyId}`);
+            setStudyData(result.data)
+        } catch (err) {
+            setStudyData(err.message)
+        }
+    }
+
+
+
     useEffect(() => {
+        getQuestions()
+        getStudy()
         createTable();
 
     }, []);
@@ -40,7 +91,7 @@ const DataPage = () => {
     const createTable = () => {
         var dict = []; // create an empty array
         var i = 1;
-        Questions.map((item) => {
+        questionsData.map((item) => {
             dict.push({
                 id: i,
                 col1: item["question"],
@@ -67,7 +118,7 @@ const DataPage = () => {
             <Grid item style={{marginTop: "5em"}}>
                 <Grid container item direction={"column"} style={{marginBottom: "2em", padding: "10px"}}>
                     <Typography variant={"h3"} align={"center"}>Form
-                        de {path_array[path_array.length - 1]}</Typography>
+                        de {studyData.title}</Typography>
                     <Typography variant={"subtitle1"} align={"center"}>Lorem Ipsum</Typography>
                 </Grid>
             </Grid>

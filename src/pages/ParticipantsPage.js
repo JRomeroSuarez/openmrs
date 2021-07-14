@@ -21,7 +21,7 @@ const ParticipantsPage = () => {
         }
     )
 
-    const [dataData, setData] = useState([])
+    const [data, setData] = useState([])
 
 
     const apiUrl = '/api'
@@ -31,7 +31,7 @@ const ParticipantsPage = () => {
 
     const location = useLocation();
     let path_array = location.pathname.split("/");
-    let data = location.state
+    let locationState = location.state
     let studyId = path_array[path_array.length - 2]
     const tabs = [
         {
@@ -64,6 +64,9 @@ const ParticipantsPage = () => {
         try {
             const result = await authAxios.get(`studies/${studyId}/participants`);
             setParticipantsData(result.data)
+            //console.log(result.data)
+            //console.log("PARTI")
+            //console.log(participantsData)
         } catch (err) {
             setParticipantsData(err.message)
         }
@@ -78,22 +81,13 @@ const ParticipantsPage = () => {
         }
     }
 
-    useEffect(() => {
-        getStudy();
-        getParticipants();
-        createTable();
-
-
-    }, []);
-
 
     const createTable = () => {
-        console.log(participantsData)
         var dict = []; // create an empty array
         var i = 1;
         participantsData.map((item) => {
             dict.push({
-                id: item["id"],
+                id: i,
                 col1: item["id"],
                 col2: item["email"],
                 col3: item["associatedForms"],
@@ -104,10 +98,18 @@ const ParticipantsPage = () => {
             });
             i++;
         })
-        console.log("PIPO")
-        console.log(dict)
         setData(dict);
+
     }
+
+
+    useEffect(() => {
+        getStudy();
+        getParticipants();
+        createTable();
+
+
+    }, []);
 
     return (
 
@@ -124,7 +126,7 @@ const ParticipantsPage = () => {
                   justify="center"
                   style={{margin: "2em", padding: "10px"}}>
                 <Grid item>
-                    <DataTable rows={dataData} columns={headTable}/>
+                    <DataTable rows={data} columns={headTable}/>
                 </Grid>
             </Grid>
         </AppFrame>
