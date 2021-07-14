@@ -25,7 +25,9 @@ const FormsPage = () => {
     const [formsData, setFormsData] = useState([]);
     const [studyData, setStudyData] = useState([]);
 
-
+    const location = useLocation();
+    let path_array = location.pathname.split("/");
+    let data = location.state
 
     const authAxios = axios.create({
         baseURL: apiUrl,
@@ -57,9 +59,7 @@ const FormsPage = () => {
         getStudy();
     }, []);
 
-    const location = useLocation();
-    let path_array = location.pathname.split("/");
-    let data = location.state
+
 
     const tabs = [
         {
@@ -94,7 +94,7 @@ const FormsPage = () => {
 
                 {formsData.map(item => (
                     <FormsCard name={item.title}
-                               path={`forms/${item.title}`}
+                               path={`forms/${item.id}`}
                                description={item.description}
                                responses={item.numResponses}
                     />
