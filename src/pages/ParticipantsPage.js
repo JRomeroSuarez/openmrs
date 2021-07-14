@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {Grid, Typography} from "@material-ui/core";
+import {CircularProgress, Grid, Typography} from "@material-ui/core";
 import AppFrame from "../components/AppFrame";
 import DataTable from "../components/DataTable";
 import {useLocation} from "react-router-dom";
@@ -27,7 +27,7 @@ const ParticipantsPage = () => {
     const apiUrl = '/api'
     const [participantsData, setParticipantsData] = useState([]);
     const [studyData, setStudyData] = useState([]);
-
+    const [loading, setLoading] = useState(true);
 
     const location = useLocation();
     let path_array = location.pathname.split("/");
@@ -60,13 +60,13 @@ const ParticipantsPage = () => {
         }
     })
 
-    const getParticipants = async () => {
+    const getParticipants = () => {
         try {
-            const result = await authAxios.get(`studies/${studyId}/participants`);
-            setParticipantsData(result.data)
-            //console.log(result.data)
-            //console.log("PARTI")
-            //console.log(participantsData)
+            authAxios.get(`studies/${studyId}/participants`).then(result => {
+                setParticipantsData(result.data)
+                setLoading(false)
+                console.log("GetParticipants", participantsData)
+            });
         } catch (err) {
             setParticipantsData(err.message)
         }
@@ -74,15 +74,18 @@ const ParticipantsPage = () => {
 
     const getStudy = async () => {
         try {
-            const result = await authAxios.get(`/studies/${studyId}`);
-            setStudyData(result.data)
+            authAxios.get(`studies/${studyId}`).then(result => {
+                setStudyData(result.data)
+                setLoading(false)
+            });
         } catch (err) {
             setStudyData(err.message)
         }
     }
 
 
-    const createTable = () => {
+    const createTable = (participantsData) => {
+        console.log("Create Table", participantsData)
         var dict = []; // create an empty array
         var i = 1;
         participantsData.map((item) => {
@@ -106,7 +109,10 @@ const ParticipantsPage = () => {
     useEffect(() => {
         getStudy();
         getParticipants();
-        createTable();
+        while (!loading) {
+            createTable(participantsData)
+            break
+        }
 
 
     }, []);
@@ -126,7 +132,8 @@ const ParticipantsPage = () => {
                   justify="center"
                   style={{margin: "2em", padding: "10px"}}>
                 <Grid item>
-                    <DataTable rows={data} columns={headTable}/>
+                    {loading ? <CircularProgress/> : <DataTable rows={data} columns={headTable}/>}
+
                 </Grid>
             </Grid>
         </AppFrame>

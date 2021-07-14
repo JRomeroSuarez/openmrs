@@ -4,8 +4,7 @@ import AppFrame from "../components/AppFrame";
 import DataTable from "../components/DataTable";
 import {useLocation} from "react-router-dom";
 
-import {headTable, reports} from "../data/reports";
-import Questions from "../endpointsPostman/questionsByForm.json";
+import {headTable} from "../data/reports";
 import axios from "axios";
 import {accesToken} from "../constants/token";
 
@@ -78,7 +77,6 @@ const DataPage = () => {
             setStudyData(err.message)
         }
     }
-
 
 
     useEffect(() => {
