@@ -25,6 +25,7 @@ const DataPage = () => {
     const apiUrl = '/api'
     const [questionsData, setQuestionsData] = useState([]);
     const [studyData, setStudyData] = useState([]);
+    const [formData, setFormData] = useState([]);
 
     const location = useLocation();
     let path_array = location.pathname.split("/");
@@ -76,10 +77,20 @@ const DataPage = () => {
         }
     }
 
+    const getForm = async () => {
+        try {
+            const result = await authAxios.get(`/forms/${formId}/`);
+            setFormData(result.data)
+        } catch (err) {
+            setFormData(err.message)
+        }
+    }
+
 
     useEffect(() => {
         getQuestions()
         getStudy()
+        getForm()
 
     }, []);
 
@@ -94,7 +105,7 @@ const DataPage = () => {
         var i = 1;
         questionsData.map((item) => {
             dict.push({
-                id: i,
+                id: item["id"],
                 col1: item["question"],
                 col2: item["subtitle"],
                 col3: item["info"],
@@ -118,9 +129,9 @@ const DataPage = () => {
 
             <Grid item style={{marginTop: "5em"}}>
                 <Grid container item direction={"column"} style={{marginBottom: "2em", padding: "10px"}}>
-                    <Typography variant={"h3"} align={"center"}>Form
+                    <Typography variant={"h3"} align={"center"}>{formData.title +" "}
                         de {studyData.title}</Typography>
-                    <Typography variant={"subtitle1"} align={"center"}>Lorem Ipsum</Typography>
+                    <Typography variant={"subtitle1"} align={"center"}>{formData.description}</Typography>
                 </Grid>
             </Grid>
             <Grid container
