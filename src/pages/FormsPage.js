@@ -29,6 +29,8 @@ const FormsPage = () => {
     let path_array = location.pathname.split("/");
     let data = location.state
 
+    let studyId = path_array[path_array.length - 2]
+
     const authAxios = axios.create({
         baseURL: apiUrl,
         headers: {
@@ -38,7 +40,7 @@ const FormsPage = () => {
 
     const getForms = async () => {
         try {
-            const result = await authAxios.get(`/studies/${data}/forms`);
+            const result = await authAxios.get(`/studies/${studyId}/forms`);
             setFormsData(result.data)
         } catch (err) {
             setFormsData(err.message)
@@ -47,7 +49,7 @@ const FormsPage = () => {
 
     const getStudy = async () => {
         try {
-            const result = await authAxios.get(`/studies/${data}`);
+            const result = await authAxios.get(`/studies/${studyId}`);
             setStudyData(result.data)
         } catch (err) {
             setStudyData(err.message)
@@ -55,16 +57,17 @@ const FormsPage = () => {
     }
 
     useEffect(() => {
-        getForms();
         getStudy();
-    }, []);
+        getForms()
 
+
+    }, []);
 
 
     const tabs = [
         {
             labelTab: studyData.title,
-            linkTab: "/study/" + data + "/forms",
+            linkTab: "/study/" + studyId + "/forms",
         },
         {
             labelTab: "Home",
@@ -72,11 +75,11 @@ const FormsPage = () => {
         },
         {
             labelTab: "Forms",
-            linkTab: "/study/" + data + "/forms",
+            linkTab: "/study/" + studyId + "/forms",
         },
         {
             labelTab: "Participants",
-            linkTab: "/study/" + data + "/participants",
+            linkTab: "/study/" + studyId + "/participants",
         }
     ];
 
@@ -86,14 +89,14 @@ const FormsPage = () => {
                 <Grid container item direction={"column"} style={{marginBottom: "2em", padding: "10px"}}>
                     <Typography variant={"h3"} align={"center"}>Forms
                         de {studyData.title}</Typography>
-                    <Typography variant={"subtitle1"} align={"center"}>Lorem Ipsum</Typography>
+                    <Typography variant={"subtitle1"} align={"center"}>{studyData.description}</Typography>
                 </Grid>
             </Grid>
             <Grid container xs={12} spacing={1}>
                 <AddForm/>
 
                 {formsData.map(item => (
-                    <FormsCard name={item.title}
+                    <FormsCard id={item.id} name={item.title}
                                path={`forms/${item.id}`}
                                description={item.description}
                                responses={item.numResponses}
