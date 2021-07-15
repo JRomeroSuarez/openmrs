@@ -84,7 +84,7 @@ const ParticipantsPage = () => {
         var i = 1;
         participantsData.map((item) => {
             dict.push({
-                id: i,
+                id: item["id"],
                 col1: item["id"],
                 col2: item["email"],
                 col3: item["associatedForms"],
