@@ -1,11 +1,10 @@
 import React, {useEffect, useState} from 'react'
-import {CircularProgress, Grid, Typography} from "@material-ui/core";
+import {Grid, Typography} from "@material-ui/core";
 import AppFrame from "../components/AppFrame";
 import DataTable from "../components/DataTable";
 import {useLocation} from "react-router-dom";
 
 import {headTable} from "../data/participants";
-import Participants from "../endpointsPostman/participantsByStudy.json"
 import axios from "axios";
 import {accesToken} from "../constants/token";
 
@@ -25,9 +24,8 @@ const ParticipantsPage = () => {
 
 
     const apiUrl = '/api'
-    const [participantsData, setParticipantsData] = useState([]);
+    const [participantsData, setParticipantsData] = useState(null);
     const [studyData, setStudyData] = useState([]);
-    const [loading, setLoading] = useState(true);
 
     const location = useLocation();
     let path_array = location.pathname.split("/");
@@ -60,12 +58,10 @@ const ParticipantsPage = () => {
         }
     })
 
-    const getParticipants = () => {
+    const getParticipants = async () => {
         try {
             authAxios.get(`studies/${studyId}/participants`).then(result => {
                 setParticipantsData(result.data)
-                setLoading(false)
-                console.log("GetParticipants", participantsData)
             });
         } catch (err) {
             setParticipantsData(err.message)
@@ -74,9 +70,8 @@ const ParticipantsPage = () => {
 
     const getStudy = async () => {
         try {
-            authAxios.get(`studies/${studyId}`).then(result => {
+            await authAxios.get(`studies/${studyId}`).then(result => {
                 setStudyData(result.data)
-                setLoading(false)
             });
         } catch (err) {
             setStudyData(err.message)
@@ -84,8 +79,7 @@ const ParticipantsPage = () => {
     }
 
 
-    const createTable = (participantsData) => {
-        console.log("Create Table", participantsData)
+    const createTable = () => {
         var dict = []; // create an empty array
         var i = 1;
         participantsData.map((item) => {
@@ -109,18 +103,22 @@ const ParticipantsPage = () => {
     useEffect(() => {
         getStudy();
         getParticipants();
-        while (!loading) {
-            createTable(participantsData)
-            break
-        }
 
 
     }, []);
 
+    useEffect(() => {
+        if (participantsData != null) {
+            createTable()
+        }
+    }, [participantsData])
+
     return (
 
         <AppFrame tabs={tabs}>
+
             <Grid item style={{marginTop: "5em"}}>
+
                 <Grid container item direction={"column"} style={{marginBottom: "2em", padding: "10px"}}>
                     <Typography variant={"h3"} align={"center"}>Participants
                         de {studyData.title}</Typography>
@@ -131,8 +129,9 @@ const ParticipantsPage = () => {
                   direction={"column"}
                   justify="center"
                   style={{margin: "2em", padding: "10px"}}>
+
                 <Grid item>
-                    {loading ? <CircularProgress/> : <DataTable rows={data} columns={headTable}/>}
+                    <DataTable rows={data} columns={headTable}/>
 
                 </Grid>
             </Grid>

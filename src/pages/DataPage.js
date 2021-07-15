@@ -59,11 +59,9 @@ const DataPage = () => {
 
     const getQuestions = async () => {
         try {
-            const result = await authAxios.get(`forms/${formId}/questions`);
-            setQuestionsData(result.data)
-            console.log(result.data)
-            //console.log("PARTI")
-            //console.log(participantsData)
+            await authAxios.get(`forms/${formId}/questions`).then(result => {
+                setQuestionsData(result.data)
+            });
         } catch (err) {
             setQuestionsData(err.message)
         }
@@ -82,9 +80,14 @@ const DataPage = () => {
     useEffect(() => {
         getQuestions()
         getStudy()
-        createTable();
 
     }, []);
+
+    useEffect(() => {
+        if (questionsData != null) {
+            createTable()
+        }
+    }, [questionsData])
 
     const createTable = () => {
         var dict = []; // create an empty array
