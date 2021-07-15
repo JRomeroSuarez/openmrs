@@ -29,7 +29,6 @@ const DataPage = () => {
 
     const location = useLocation();
     let path_array = location.pathname.split("/");
-    let locationState = location.state
     let studyId = path_array[path_array.length - 3]
     let formId = path_array[path_array.length - 1]
     const tabs = [
@@ -102,7 +101,6 @@ const DataPage = () => {
 
     const createTable = () => {
         var dict = []; // create an empty array
-        var i = 1;
         questionsData.map((item) => {
             dict.push({
                 id: item["id"],
@@ -117,7 +115,6 @@ const DataPage = () => {
                 col9: item["editDate"],
                 col10: item["actions"]
             });
-            i++;
 
         })
         setData(dict);
