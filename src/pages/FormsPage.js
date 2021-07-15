@@ -5,7 +5,6 @@ import FormsCard from "../components/FormsCard";
 
 import {useLocation} from 'react-router-dom'
 import AddForm from "../components/AddForm";
-import Forms from "../endpointsPostman/forms.json"
 import axios from "axios";
 import {accesToken} from "../constants/token";
 
@@ -27,7 +26,6 @@ const FormsPage = () => {
 
     const location = useLocation();
     let path_array = location.pathname.split("/");
-    let data = location.state
 
     let studyId = path_array[path_array.length - 2]
 

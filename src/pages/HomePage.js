@@ -50,6 +50,7 @@ const HomePage = () => {
             linkTab: "/",
         }
     ];
+
     return (
         <AppFrame tabs={tabs}>
             <Grid item style={{marginTop: "5em"}}>
@@ -58,8 +59,6 @@ const HomePage = () => {
                     <Typography variant={"subtitle1"} align={"center"}>Lorem Ipsum</Typography>
                 </Grid>
             </Grid>
-
-
             <Grid container xs={12} spacing={1}>
 
                 {studiesData.map(item => (
@@ -70,10 +69,7 @@ const HomePage = () => {
                                  forms={item.numForms}
                     />
                 ))}
-
             </Grid>
-
-
         </AppFrame>
     )
 }

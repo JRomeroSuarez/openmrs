@@ -81,7 +81,6 @@ const ParticipantsPage = () => {
 
     const createTable = () => {
         var dict = []; // create an empty array
-        var i = 1;
         participantsData.map((item) => {
             dict.push({
                 id: item["id"],
@@ -93,7 +92,6 @@ const ParticipantsPage = () => {
                 col6: item["invitationStatus"],
                 col7: item["actions"]
             });
-            i++;
         })
         setData(dict);
 
