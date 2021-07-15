@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
         margin: '10%'
     }
 }));
-const FormsCard = ({name, path, description, responses}) => {
+const FormsCard = ({id,name, path, description, responses}) => {
     const history = useHistory()
 
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -34,7 +34,10 @@ const FormsCard = ({name, path, description, responses}) => {
     };
 
     const onClickHandler = () => {
-        history.push(path)
+        history.push({
+            pathname: path,
+            state: id
+        })
     }
     const classes = useStyles();
     return (
